@@ -1,0 +1,26 @@
+{
+  "partidos": [
+    {
+      "Acronimo": "P2",
+      "Nombre": "Partido2",
+      "Presidente": "Presidente2",
+      "Votes": 80,
+      "Seats": 3,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 0
+    },
+    {
+      "Acronimo": null,
+      "Nombre": null,
+      "Presidente": null,
+      "Votes": 0,
+      "Seats": 0,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 0
+    }
+  ]
+}
