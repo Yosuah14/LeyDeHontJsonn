@@ -108,6 +108,11 @@ namespace LeyDeHont
                     dgvParties.Items.Refresh();
                     managment.IsEnabled = false;
                     previousdata.IsEnabled = false;
+                    foreach (DatosPartido partido in model.Parties)
+                    {
+                        partido.Votes = 0;
+                        partido.Seats = 0;
+                    }
                     blanco.Content = "Los votos en blanco son " + Convert.ToInt32(pd.valid_votes * 0.05);
                     simulation.Focus();
                 }
@@ -117,10 +122,6 @@ namespace LeyDeHont
                     model.Acronimo=acronimo.Text; 
                     model.Nombre=nPartido.Text;
                     model.Presidente= txtPresidente.Text;
-                 
-                    
-
-
                     dgvPeople.Items.Refresh();
                     if (model.Parties == null) model.Parties = new ObservableCollection<DatosPartido>();
                     //Si el registro no existe, procedemos a crearlo
@@ -183,10 +184,10 @@ namespace LeyDeHont
             {
                 // Eliminamos el elemento seleccionado del modelo y de la base de datos
                 model.DeleteParty(selectedParty);
+                model.Parties.Remove(selectedParty);
+                
             }
             dgvPeople.ItemsSource = model.Parties;
-  
-
             // Actualizamos nuevamente la interfaz gráfica
             dgvPeople.Items.Refresh();
         }
@@ -284,27 +285,11 @@ namespace LeyDeHont
             }
 
             ObservableCollection<DatosPartido> listaNormal = model.Parties;
-            foreach (DatosPartido partido in model.Parties)
-            {
-                partido.Votes = 0;
-                partido.Seats = 0;
-            }
-
+          
             List<DatosPartido> listaDePartidosIni = new List<DatosPartido>(listaNormal);
             listaDePartidosIni = PartidosFactory.inicialiteParties(pd, listaDePartidosIni);
             listaDePartidosIni = DatosPartido.CalculateSeats(listaDePartidosIni);
 
-
-            // Asignar los valores calculados a cada partido individualmente
-            foreach (DatosPartido partido in listaDePartidosIni)
-            {
-                partido.Nombre = partido.Nombre;
-                partido.Seats = partido.Seats; // Reemplaza por la lógica que estás utilizando para calcular los escaños
-                partido.Votes = partido.Votes; // Reemplaza por la lógica que estás utilizando para calcular los votos
-            }
-
-            listaNormal = new ObservableCollection<DatosPartido>(listaDePartidosIni);
-            model.Parties = listaNormal;
 
             // Llama al nuevo método para actualizar todos los partidos en la base de datos
             model.UpdatePartyAll(model.Parties);

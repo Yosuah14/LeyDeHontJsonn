@@ -10,7 +10,7 @@ namespace LeyDeHont.Domain
     internal class PartiesDataComponent
     {
         // Ruta del archivo JSON donde se almacenan los datos de los partidos
-        public static string Path = "C:\\Users\\jose1\\Desktop\\LeyDeHontJsonn\\Data\\Partidos.json";
+        public static string Path = "C:\\Users\\Alumno\\Desktop\\LeyDeHontJsonn2\\Data\\Partidos.json";
 
         // Método para leer la lista de partidos desde el archivo JSON
         public static ObservableCollection<DatosPartido> ReadParties()

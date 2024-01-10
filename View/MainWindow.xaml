@@ -82,8 +82,8 @@
                     <DataGrid x:Name="dgvParties" Grid.Row="1" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Party" Binding="{Binding Nombre}" Width="*"  />
-                            <DataGridTextColumn Header="Votes" Binding="{Binding votes }" Width="*"  />
-                            <DataGridTextColumn Header="Seats" Binding="{Binding seats}" Width="*"  />
+                            <DataGridTextColumn Header="Votes" Binding="{Binding Votes }" Width="*"  />
+                            <DataGridTextColumn Header="Seats" Binding="{Binding Seats}" Width="*"  />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

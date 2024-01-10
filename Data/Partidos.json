@@ -2,75 +2,108 @@
   "partidos": [
     {
       "Acronimo": "1324",
-      "Nombre": "12333",
-      "Presidente": "12",
-      "Votes": 2316659,
+      "Nombre": "2345",
+      "Presidente": "5435qre",
+      "Votes": 2299146,
       "Seats": 14,
       "Pm": {
         "listParties": []
       },
-      "VotesAux": 154443
+      "VotesAux": 153276
     },
     {
       "Acronimo": "1324",
-      "Nombre": "1233333",
-      "Presidente": "1324",
-      "Votes": 1627052,
+      "Nombre": "23453",
+      "Presidente": "5435",
+      "Votes": 1614752,
       "Seats": 10,
       "Pm": {
         "listParties": []
       },
-      "VotesAux": 147913
+      "VotesAux": 146795
     },
     {
       "Acronimo": "1324",
-      "Nombre": "12333333",
-      "Presidente": "1324",
-      "Votes": 1035396,
+      "Nombre": "234534",
+      "Presidente": "5435",
+      "Votes": 1027570,
       "Seats": 6,
       "Pm": {
         "listParties": []
       },
-      "VotesAux": 147913
+      "VotesAux": 146795
     },
     {
       "Acronimo": "1324",
-      "Nombre": "123333333",
-      "Presidente": "1324",
-      "Votes": 936787,
+      "Nombre": "2345344",
+      "Presidente": "5435",
+      "Votes": 929706,
       "Seats": 5,
       "Pm": {
         "listParties": []
       },
-      "VotesAux": 156131
+      "VotesAux": 154951
     },
     {
       "Acronimo": "1324",
-      "Nombre": "1234",
-      "Presidente": "1234",
-      "Votes": 246523,
+      "Nombre": "23453444",
+      "Presidente": "5435",
+      "Votes": 244659,
       "Seats": 1,
       "Pm": {
         "listParties": []
       },
-      "VotesAux": 123261
+      "VotesAux": 122329
     },
     {
       "Acronimo": "1324",
-      "Nombre": "123443",
-      "Presidente": "1234",
-      "Votes": 213653,
+      "Nombre": "2345344441234",
+      "Presidente": "5435",
+      "Votes": 212038,
       "Seats": 1,
       "Pm": {
         "listParties": []
       },
-      "VotesAux": 106826
+      "VotesAux": 106019
     },
     {
       "Acronimo": "1324",
-      "Nombre": "132443333",
-      "Presidente": "12q1234",
-      "Votes": 0,
+      "Nombre": "23453444412344123",
+      "Presidente": "5435",
+      "Votes": 97864,
+      "Seats": 0,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 0
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "23453444412344123123",
+      "Presidente": "5435",
+      "Votes": 32621,
+      "Seats": 0,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 0
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "234534444123441231231324",
+      "Presidente": "5435",
+      "Votes": 16311,
+      "Seats": 0,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 0
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "2345344441234412312313241324",
+      "Presidente": "5435",
+      "Votes": 16311,
       "Seats": 0,
       "Pm": {
         "listParties": []
