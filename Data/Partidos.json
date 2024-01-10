@@ -1,20 +1,75 @@
 {
   "partidos": [
     {
-      "Acronimo": "P2",
-      "Nombre": "Partido2",
-      "Presidente": "Presidente2",
-      "Votes": 80,
-      "Seats": 3,
+      "Acronimo": "1324",
+      "Nombre": "12333",
+      "Presidente": "12",
+      "Votes": 2316659,
+      "Seats": 14,
       "Pm": {
         "listParties": []
       },
-      "VotesAux": 0
+      "VotesAux": 154443
     },
     {
-      "Acronimo": null,
-      "Nombre": null,
-      "Presidente": null,
+      "Acronimo": "1324",
+      "Nombre": "1233333",
+      "Presidente": "1324",
+      "Votes": 1627052,
+      "Seats": 10,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 147913
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "12333333",
+      "Presidente": "1324",
+      "Votes": 1035396,
+      "Seats": 6,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 147913
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "123333333",
+      "Presidente": "1324",
+      "Votes": 936787,
+      "Seats": 5,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 156131
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "1234",
+      "Presidente": "1234",
+      "Votes": 246523,
+      "Seats": 1,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 123261
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "123443",
+      "Presidente": "1234",
+      "Votes": 213653,
+      "Seats": 1,
+      "Pm": {
+        "listParties": []
+      },
+      "VotesAux": 106826
+    },
+    {
+      "Acronimo": "1324",
+      "Nombre": "132443333",
+      "Presidente": "12q1234",
       "Votes": 0,
       "Seats": 0,
       "Pm": {

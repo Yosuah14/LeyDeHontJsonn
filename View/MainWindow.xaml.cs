@@ -34,10 +34,10 @@ namespace LeyDeHont
         // Método para insertar partidos
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
-            // Comprobamos que la lista no sea nula
-            if (model.Parties == null)
+            //Comprobamos que la lista no sea nula
+            if (p.Pm.listParties == null)
             {
-                // Ponemos vista a true para que no haga el foco cuando insertes el primer partido
+                //Ponemos vista a true para que no haga el foco cuando insertes el primer partido
                 vista = true;
                 p = new DatosPartido();
                 dgvPeople.ItemsSource = p.getListParties();
@@ -48,20 +48,45 @@ namespace LeyDeHont
                     vista = true;
                 }
             }
-
-            // Controla que se completen los 3 campos
+            //Contralos que se completen los 3 campos
             if (string.IsNullOrEmpty(acronimo.Text) || string.IsNullOrEmpty(nPartido.Text) || string.IsNullOrEmpty(txtPresidente.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos antes de agregar una nueva entrada.");
             }
             else
             {
+                if (model.Parties == null)
+                {
+                    p.addParties(acronimo.Text, nPartido.Text, txtPresidente.Text);
+                    dgvPeople.ItemsSource = model.Parties;
+
+                    dgvPeople.Items.Refresh();
+                    if (model.Parties == null) model.Parties = new ObservableCollection<DatosPartido>();
+                    //Si el registro no existe, procedemos a crearlo
+                    if (model.Parties.Where(x => x.Nombre == model.Nombre).FirstOrDefault() == null)
+                    {
+                        model.Parties.Add(new DatosPartido
+                        {
+                            Nombre = model.Nombre,
+                            Acronimo = model.Acronimo,
+                            Presidente = model.Presidente,
+                            Seats = model.Seats,
+                            Votes = model.Votes
+                        });
+                        //una vez agregado el registro al modelo, lo agregamos a la BDD
+                        model.NewUser();
+
+
+
+                        dgvPeople.ItemsSource = model.Parties;
+                        dgvPeople.Items.Refresh();
+                    }
+                }
                 if (model.Parties.Count > 9)
                 {
-                    // Inicializamos el objeto de datos previos
-                    PreviousData pd = null;
+                    //Inicializamos el objeto de datos previos
+                    PreviousData pd = new PreviousData();
                     int text1, text2, text3;
-
                     if (!string.IsNullOrEmpty(TextBox1.Text) && !string.IsNullOrEmpty(TextBox2.Text) && !string.IsNullOrEmpty(TextBox3.Text) &&
                         int.TryParse(TextBox1.Text, out text1) && int.TryParse(TextBox2.Text, out text2) && int.TryParse(TextBox3.Text, out text3))
                     {
@@ -73,14 +98,11 @@ namespace LeyDeHont
                         // Manejo de error si los valores no son válidos
                         return;
                     }
-
-                    // Inicializamos la lista
+                    //Anicializamos la lista
                     ObservableCollection<DatosPartido> listaNormal = model.Parties;
                     List<DatosPartido> listaDePartidosF = new List<DatosPartido>(listaNormal);
-
-                    // Añadimos los votos válidos
+                    //Añadimos los votos validos
                     listaDePartidosF = PartidosFactory.inicialiteParties(pd, listaDePartidosF);
-
                     simulation.IsEnabled = true;
                     dgvParties.ItemsSource = listaDePartidosF;
                     dgvParties.Items.Refresh();
@@ -91,42 +113,52 @@ namespace LeyDeHont
                 }
                 else
                 {
-                    // Si el registro no existe, procedemos a crearlo
-                    DatosPartido newParty = new DatosPartido
-                    {
-                        Nombre = nPartido.Text,
-                        Acronimo = acronimo.Text,
-                        Presidente = txtPresidente.Text,
-                        Seats = model.Seats,  // Asegúrate de tener un valor adecuado para model.Seats
-                        Votes = model.Votes   // Asegúrate de tener un valor adecuado para model.Votes
-                    };
+                    p.addParties(acronimo.Text, nPartido.Text, txtPresidente.Text);
+                    model.Acronimo=acronimo.Text; 
+                    model.Nombre=nPartido.Text;
+                    model.Presidente= txtPresidente.Text;
+                 
+                    
 
-                    if (!model.Parties.Any(x => x.Nombre == newParty.Nombre))
-                    {
-                        model.Parties.Add(newParty);
 
-                        // Una vez agregado el registro al modelo, lo agregamos al archivo JSON
+                    dgvPeople.Items.Refresh();
+                    if (model.Parties == null) model.Parties = new ObservableCollection<DatosPartido>();
+                    //Si el registro no existe, procedemos a crearlo
+                    if (model.Parties.Where(x => x.Nombre == model.Nombre).FirstOrDefault() == null)
+                    {
+                        model.Parties.Add(new DatosPartido
+                        {
+                            Nombre = model.Nombre,
+                            Acronimo = model.Acronimo,
+                            Presidente = model.Presidente,
+                            Seats = model.Seats,
+                            Votes = model.Votes
+                        });
+                        //una vez agregado el registro al modelo, lo agregamos a la BDD
                         model.NewUser();
+                        dgvPeople.ItemsSource = model.Parties;
+                        dgvPeople.Items.Refresh();
                     }
                     else
                     {
-                        // Si el registro ya existe, actualizamos los valores
-                        DatosPartido existingParty = model.Parties.First(x => x.Nombre == newParty.Nombre);
-                        existingParty.Acronimo = model.Acronimo;
-                        existingParty.Presidente = model.Presidente;
-                        existingParty.Seats = model.Seats;
-                        existingParty.Votes = model.Votes;
+                        foreach (DatosPartido r in model.Parties)
+                        {
 
-                        // Una vez actualizado el registro en el modelo, lo actualizamos en el archivo JSON
+                            r.Acronimo = model.Acronimo;
+                            r.Presidente = model.Presidente;
+                            r.Seats = model.Seats;
+                            r.Votes = model.Votes;
+                            break;
+                        }
+                        //Actualizamos
                         model.UpdateParty();
+                        dgvPeople.ItemsSource = model.Parties;
+                        dgvPeople.Items.Refresh();
                     }
-
-                    dgvPeople.ItemsSource = model.Parties;
-                    dgvPeople.Items.Refresh();
                 }
+                // Todos los campos están llenos y no se ha alcanzado el límite de 10 partidos, puedes agregar la entrada              
             }
         }
-
 
         // Método para borrar partidos
         private void btnBorrar_Click(object sender, RoutedEventArgs e)
@@ -149,14 +181,15 @@ namespace LeyDeHont
 
             if (selectedParty != null)
             {
-                // Eliminamos el elemento seleccionado del modelo y del archivo JSON
-                model.DeleteParty(selectedParty.Nombre);
+                // Eliminamos el elemento seleccionado del modelo y de la base de datos
+                model.DeleteParty(selectedParty);
             }
+            dgvPeople.ItemsSource = model.Parties;
+  
 
             // Actualizamos nuevamente la interfaz gráfica
             dgvPeople.Items.Refresh();
         }
-
         // Método para ocultar el botón de borrado
         private void dgvPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -261,6 +294,7 @@ namespace LeyDeHont
             listaDePartidosIni = PartidosFactory.inicialiteParties(pd, listaDePartidosIni);
             listaDePartidosIni = DatosPartido.CalculateSeats(listaDePartidosIni);
 
+
             // Asignar los valores calculados a cada partido individualmente
             foreach (DatosPartido partido in listaDePartidosIni)
             {
@@ -272,7 +306,10 @@ namespace LeyDeHont
             listaNormal = new ObservableCollection<DatosPartido>(listaDePartidosIni);
             model.Parties = listaNormal;
 
-             // Llama al nuevo método para actualizar todos los partidos en la base de datos
+            // Llama al nuevo método para actualizar todos los partidos en la base de datos
+            model.UpdatePartyAll(model.Parties);
+            dgvPeople.ItemsSource = model.Parties;
+            dgvPeople.Items.Refresh();
 
             MessageBox.Show("Se ha realizado la simulación");
             model.Parties = new ObservableCollection<DatosPartido>(p.Pm.listParties);

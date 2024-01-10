@@ -10,7 +10,7 @@ namespace LeyDeHont.Domain
     internal class PartiesDataComponent
     {
         // Ruta del archivo JSON donde se almacenan los datos de los partidos
-        public static string Path = "C:\\Users\\Alumno\\Desktop\\LeyDeHontJson-master\\Data\\Partidos.json";
+        public static string Path = "C:\\Users\\jose1\\Desktop\\LeyDeHontJsonn\\Data\\Partidos.json";
 
         // Método para leer la lista de partidos desde el archivo JSON
         public static ObservableCollection<DatosPartido> ReadParties()
@@ -97,12 +97,36 @@ namespace LeyDeHont.Domain
                 File.WriteAllText(Path, contenidoJson);
             }
         }
-
-        internal static void DeleteParty(string partyName)
+        public static void UpdateAllPartiesInJson(ObservableCollection<DatosPartido> parties)
         {
-            throw new NotImplementedException();
-        }
+            // Obtener la lista actual de partidos desde el archivo JSON
 
+            foreach (DatosPartido partido in parties)
+            {
+                // Encontrar el partido correspondiente en la lista
+                DatosPartido existingParty = parties.FirstOrDefault(p => p.Nombre.Equals(partido.Nombre));
+
+                if (existingParty != null)
+                {
+                    // Actualizar los datos del partido existente con los nuevos valores
+                    existingParty.Nombre = partido.Nombre;
+                    existingParty.Acronimo = partido.Acronimo;
+                    existingParty.Presidente = partido.Presidente;
+                    existingParty.Seats = partido.Seats;
+                    existingParty.Votes = partido.Votes;
+                }
+            }
+
+            // Crear un nuevo objeto RootObject con la lista actualizada
+            RootObject rootObject = new RootObject
+            {
+                Parties = parties
+            };
+
+            // Serializar y guardar el objeto en el archivo JSON
+            string contenidoJson = JsonConvert.SerializeObject(rootObject, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(Path, contenidoJson);
+        }
         // Clase que representa el objeto raíz para la serialización JSON
         class RootObject
         {

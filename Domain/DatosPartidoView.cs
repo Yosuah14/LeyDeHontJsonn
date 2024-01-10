@@ -103,7 +103,7 @@ namespace LeyDeHont.Domain
             Parties = new ObservableCollection<DatosPartido>(PartiesDataComponent.ReadParties());
         }
 
-        public void DeleteParty(string partyName)
+        public void DeleteParty(DatosPartido partyName)
         {
             // Implementa la lógica para borrar un partido utilizando el componente de datos.
             PartiesDataComponent.DeleteParty(partyName);
@@ -123,6 +123,14 @@ namespace LeyDeHont.Domain
 
 
         }
+        public void UpdatePartyAll(ObservableCollection<DatosPartido> parties)
+        {
+            // Implementa la lógica para actualizar un partido utilizando el componente de datos.
+            PartiesDataComponent.UpdateAllPartiesInJson(parties);
+
+
+        }
+
     }
 }
 
